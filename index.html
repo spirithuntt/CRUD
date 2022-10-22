@@ -34,7 +34,7 @@
 			</div>
 			
 			<div class="">
-				<button class="bg-success bg-gradient border text-white rounded-pill px-3 btn-lg" data-bs-toggle="modal"
+				<button id="addbtn" class="bg-success bg-gradient border text-white rounded-pill px-3 btn-lg" data-bs-toggle="modal"
 					data-bs-target="#modal">
 					<i class="fa fa-plus text-black-50"></i> Add Task</button>
 			</div>
@@ -77,7 +77,28 @@
 		</div>
 	</div>
 	<!-- END #content -->
+		  <!----modal starts here--->
+<div id="deleteModal" class="modal fade" role='dialog'>
+	<div class="modal-dialog">
+			<div class="modal-content">
+					<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title">Delete </h4>
+					</div>
+					<div class="modal-body">
+							<p>Do You Really Want to Delete This ?</p>
+							
+					</div>
+					<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			<span id= 'deleteButton'></span>
+					</div>
 		
+			</div>
+		</div>
+</div>
+<!--Modal ends here--->
+
 		
 		<!-- BEGIN scroll-top-btn -->
 		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top" data-toggle="scroll-to-top"><i class="fa fa-angle-up"></i></a>
@@ -92,10 +113,10 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					<button type="button" class="btn-close" id="close-button" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form id = "hamid">
+					<form id = "form">
 						<div class="mb-3">
 							<label for="recipient-name" class="col-form-label">Title</label>
 							<input type="text" class="form-control" id="recipient-name">
@@ -103,27 +124,27 @@
 						</div>
 						<label for="message-text" class="col-form-label">Type</label>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+							<input class="form-check-input" type="radio" name="exampleRadios" id="feature" value="option1" checked>
 							<label class="form-check-label" for="exampleRadios1">
 								Feature
 							</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+							<input class="form-check-input" type="radio" name="exampleRadios" id="bug" value="option2">
 							<label class="form-check-label" for="exampleRadios2">
 								Bug
 							</label>
 						</div>
 						<label for="message-text" class="col-form-label">Priority</label>
 						<select class="form-select"  id="recipient-Priority" aria-label="Default select example">
-							<option selected>Please select</option>
+							<option selected disabled>Please select</option>
 							<option value="Low">Low</option>
 							<option value="Medium">Medium</option>
 							<option value="High">High</option>
 						</select>
 						<label for="message-text" class="col-form-label">Status</label>
 						<select class="form-select" id="recipient-Status" aria-label="Default select example">
-							<option selected>Please select</option>
+							<option selected disabled>Please select</option>
 							<option value="To Do">To do</option>
 							<option value="In Progress">In progress</option>
 							<option value="Done">Done</option>
@@ -138,12 +159,36 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-					<button id="button-save" type="button" class="btn btn-primary">Save</button>
+					<button type="button" class="btn btn-danger" id="delete-btn" data-bs-toggle="modal" data-bs-target="#deletecom">Delete</button>
+					<button type="button" class="btn btn-primary" onclick="updateTask()" id="update-button">Update</button>
+					<button type="button" class="btn btn-primary" id="button-save" onclick="taskValidation()" >Save</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	</div>
+
+
+
+	<!--========================================================== delete modal con ======================================================================-->
+	<!-- Modal -->
+<div class="modal fade" id="deletecom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete comfirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ARE YOU SURE YOU WANT TO DELETE THIS
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" onclick="deleteTask()" data-bs-dismiss="modal" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<script src="./app.js"></script>
 	<!-- ================== BEGIN core-js ================== -->
 	<script src="assets/js/vendor.min.js"></script>
